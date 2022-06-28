@@ -7,6 +7,9 @@ const playerScore = document.getElementById("player-score")
 const computerScore = document.getElementById("computer-score")
 const choices = ["rock", "paper", "scissors"]
 
+const clapSound = new Audio("assets/audio/clap.mp3");
+const looseSound = new Audio('assets/sounds/loose.mp3');
+
 /**
  * Once the DOM has finished loading, loop through all of the buttons and Add event listener. 
  */
@@ -50,13 +53,6 @@ function checkWinner (playerChoice,machineChoice) {
     console.log(playerChoice);
     console.log(machineChoice);
 
-
-    // // Player and Computer have same choice (0 and 0, 1 and 1, 2 and 2)
-    // if (playerChoice === machineChoice){
-    //     alert(`It's a draw!! Player Number is: ${playerChoice}. Computer Random Number isssss: ${machineChoice}`);
-    // }
-
-
     // Player and Computer have same choice (0 and 0, 1 and 1, 2 and 2)
     if (playerChoice === machineChoice){
         alert(`It's a draw!! Player Number is: ${playerChoice}. Computer Random Number isssss: ${machineChoice}`);
@@ -68,10 +64,12 @@ function checkWinner (playerChoice,machineChoice) {
     }else if (playerChoice === "rock" && machineChoice === "scissors"){
         alert(`Rock blunts Scissors - Player wins... Player Number is: ${playerChoice}. Computer Random Number isssss: ${machineChoice}`);
         incrementPlayerScore();
+        clapSound.play();
     // Paper(1) and Rock (0)
     }else if (playerChoice === "paper" && machineChoice === "rock"){
         alert(`Paper covers Rock - Player wins... Player Number is: ${playerChoice}. Computer Random Number isssss: ${machineChoice}`);
         incrementPlayerScore();
+        clapSound.play();
     // Paper(1) and Scissors (2)
     }else if (playerChoice === "paper" && machineChoice === "scissors"){
         alert(`Scissors cut Paper - Computer wins... Player Number is: ${playerChoice}. Computer Random Number isssss: ${machineChoice}`);
@@ -84,6 +82,7 @@ function checkWinner (playerChoice,machineChoice) {
     }else if (playerChoice === "scissors" && machineChoice === "paper"){
         alert(`Scissors cut Paper - Player wins... Player Number is: ${playerChoice}. Computer Random Number isssss: ${machineChoice}`);
         incrementPlayerScore();
+        clapSound.play();
     }
 
 }
@@ -114,8 +113,10 @@ function incrementMachineScore() {
     
     alert("In Incremembt Machine score loop");
     let oldScore = parseInt(document.getElementById("computer-score").innerText);
+    
     alert(oldScore);
     document.getElementById("computer-score").innerText = ++ oldScore;
+
 
 }
 
